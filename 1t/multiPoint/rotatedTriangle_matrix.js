@@ -4,6 +4,7 @@
  * 变换矩阵
  * 矩阵和矢量的乘法
  * 使用旋转矩阵重写旋转三角形demo
+ * 新坐标 = 变换矩阵 * 旧坐标
  */
 
 const VSHADER_SOURCE = `
@@ -45,15 +46,34 @@ const main = () => {
 
   initBuffer(gl, a_Position);
 
-  const radian = (Math.PI * ANGLE) / 180;
+  //按列主序存储
 
-  const sinB=Math.sin(radian);
-  const cosB=Math.cos(radian);
+  //旋转矩阵
+  // const radian = (Math.PI * ANGLE) / 180;
+  // const sinB=Math.sin(radian);
+  // const cosB=Math.cos(radian);
+  // const xformMatrix=new Float32Array([
+  //   cosB, sinB,  0.0,0.0,
+  //   -sinB,cosB,  0.0,0.0,
+  //   0.0,  0.0,   1.0,0.0,
+  //   0.0,  0.0,   0.0,1.0
+  // ])
 
+  //平移矩阵
+  // const Tx=0.5,Ty=0.5,Tz=0.0;
+  // const xformMatrix=new Float32Array([
+  //   1.0,0.0,0.0,0.0,
+  //   0.0,1.0,0.0,0.0,
+  //   0.0,0.0,1.0,0.0,
+  //   Tx ,Ty ,Tz ,1.0
+  // ])
+
+  //缩放矩阵
+  const Sx=1.0,Sy=1.5,Sz=1.0;
   const xformMatrix=new Float32Array([
-    cosB,sinB,0.0,0.0,
-    -sinB,cosB,0.0,0.0,
-    0.0,0.0,1.0,0.0,
+    Sx ,0.0,0.0,0.0,
+    0.0,Sy ,0.0,0.0,
+    0.0,0.0,Sz ,0.0,
     0.0,0.0,0.0,1.0
   ])
 
