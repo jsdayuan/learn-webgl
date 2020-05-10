@@ -54,10 +54,11 @@ const main = () => {
 
   const ANGLE = 90.0;
   const Tx = 0.5;
+  const Ty = 0.5;
   const modelMatrix = new Matrix4();
 
   modelMatrix.setRotate(ANGLE, 0, 0, 1);
-  modelMatrix.translate(Tx, 0, 0);
+  modelMatrix.translate(Tx, Ty, 0);
 
   gl.uniformMatrix4fv(u_ModelMatrix, false, modelMatrix.elements);
 
